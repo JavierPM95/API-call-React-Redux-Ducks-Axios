@@ -2,16 +2,37 @@ import axios from "axios";
 
 // Constantes
 const initialData = {
-  array: [],
+  array: [
+  {name: "bulbasaur", url: "https://pokeapi.co/api/v2/pokemon/1/"},
+  {name: "ivysaur", url: "https://pokeapi.co/api/v2/pokemon/2/"},
+  {name: "venusaur", url: "https://pokeapi.co/api/v2/pokemon/3/"},
+  {name: "charmander", url: "https://pokeapi.co/api/v2/pokemon/4/"},
+  {name: "charmeleon", url: "https://pokeapi.co/api/v2/pokemon/5/"},
+  {name: "charizard", url: "https://pokeapi.co/api/v2/pokemon/6/"},
+  {name: "squirtle", url: "https://pokeapi.co/api/v2/pokemon/7/"},
+  {name: "wartortle", url: "https://pokeapi.co/api/v2/pokemon/8/"},
+  {name: "blastoise", url: "https://pokeapi.co/api/v2/pokemon/9/"},
+  {name: "caterpie", url: "https://pokeapi.co/api/v2/pokemon/10/"},
+   {name: "metapod", url: "https://pokeapi.co/api/v2/pokemon/11/"},
+   {name: "butterfree", url: "https://pokeapi.co/api/v2/pokemon/12/"},
+   {name: "weedle", url: "https://pokeapi.co/api/v2/pokemon/13/"},
+   {name: "kakuna", url: "https://pokeapi.co/api/v2/pokemon/14/"},
+   {name: "beedrill", url: "https://pokeapi.co/api/v2/pokemon/15/"},
+   {name: "pidgey", url: "https://pokeapi.co/api/v2/pokemon/16/"},
+   {name: "pidgeotto", url: "https://pokeapi.co/api/v2/pokemon/17/"},
+   {name: "pidgeot", url: "https://pokeapi.co/api/v2/pokemon/18/"},
+   {name: "rattata", url: "https://pokeapi.co/api/v2/pokemon/19/"},
+   {name: "raticate", url: "https://pokeapi.co/api/v2/pokemon/20/"}
+  ],
   offset: 0,
-  sprite: []
+  pokedexId: []
 };
 
 // Types
 const GET_POKEMON_OK = "GET_POKEMON_OK";
 const GET_POKEMON_NEXT = "GET_POKEMON_NEXT";
 const GET_POKEMON_PREVIOUS = "GET_POKEMON_PREVIOUS";
-const GET_POKEMON_SPRITE = "GET_POKEMON_SPRITE";
+const GET_POKEDEX_ID = "GET_POKEDEX_ID";
 
 // Reducer
 export default function pokeReducer(state = initialData, action) {
@@ -30,10 +51,10 @@ export default function pokeReducer(state = initialData, action) {
         array: action.payload.array,
         offset: action.payload.offset,
       };
-    case GET_POKEMON_SPRITE:
+    case GET_POKEDEX_ID:
       return {
         ...state,
-        sprite: action.payload.sprite
+        pokedexId: action.payload.pokedexId
       };
     default:
       return state;
@@ -96,41 +117,16 @@ export const getPokemonPrevious = () => async (dispatch, getState) => {
   }
 };
 
-export const getPokemonSprite = () => async (dispatch, getState) => {
-    const pokeArray = getState().pokemon.array;
-    const pokeUrl = pokeArray.map(
-      (pokemon) => `https://pokeapi.co/api/v2/pokemon/${pokemon.name}`
-    );
-    console.log(pokeUrl);
+export const getPokedexId = () => async (dispatch, getState) => {
+    const pokemonUrl = getState().pokemon.array.map(pokemon => pokemon.url)
+    const pokemonSplit = pokemonUrl.map(p => (p.split("/")))
+    const pokedexId = pokemonSplit.map(p => (p[6]))
   try {
-    const res = {
-      res0: await axios.get(pokeUrl[0]),
-      res1: await axios.get(pokeUrl[1]),
-/*      res2: await axios.get(pokeUrl[2]),
-      res3: await axios.get(pokeUrl[3]),
-      res4: await axios.get(pokeUrl[4]),
-      res5: await axios.get(pokeUrl[5]),
-      res6: await axios.get(pokeUrl[6]),
-      res7: await axios.get(pokeUrl[7]),
-      res8: await axios.get(pokeUrl[8]),
-      res9: await axios.get(pokeUrl[9]),
-      res10: await axios.get(pokeUrl[10]),
-      res11: await axios.get(pokeUrl[11]),
-      res12: await axios.get(pokeUrl[12]),
-      res13: await axios.get(pokeUrl[13]),
-      res14: await axios.get(pokeUrl[14]),
-      res15: await axios.get(pokeUrl[15]),
-      res16: await axios.get(pokeUrl[16]),
-      res17: await axios.get(pokeUrl[17]),
-      res18: await axios.get(pokeUrl[18]),
-      res19: await axios.get(pokeUrl[19]),
-      res20: await axios.get(pokeUrl[20]),*/
-    };
-    console.log(res);
+    
     dispatch({
-      type: GET_POKEMON_SPRITE,
+      type: GET_POKEDEX_ID,
       payload: {
-        sprite: res
+        pokedexId: pokedexId
       },
     });
   } catch (error) {
