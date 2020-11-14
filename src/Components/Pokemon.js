@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react/cjs/react.development";
 import {
-  getPokemonAction,
   getPokemonNext,
   getPokemonPrevious,
   getPokedexId,
@@ -10,21 +9,21 @@ import {
 import PokemonCard from "./PokemonCard";
 
 const Pokemon = () => {
-  const dispatch = useDispatch();
   const pokemon = useSelector((store) => store.pokemon.array);
+  const dispatch = useDispatch();
   const offset = useSelector((store) => store.pokemon.offset);
   const pokedexId = useSelector((store) => store.pokemon.pokedexId);
   
 
   useEffect(() => {
     dispatch(getPokedexId());
-  }, [offset]);
+  }, [offset, dispatch]);
   return (
     <div className="container">
-      <div className="row my-2">
+      <div className="row my-3">
         <div className="col-md-6">
           <h1>
-            Pokémon
+            Pokémon Index
             <span role="img" arial-label="get">
               ✨
             </span>

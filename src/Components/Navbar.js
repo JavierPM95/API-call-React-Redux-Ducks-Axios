@@ -6,7 +6,7 @@ const Navbar = () => {
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
         <div className="container">
           <a className="navbar-brand" href="/">
-            Pokemon API
+            Pokémon API
           </a>
           <button
             className="navbar-toggler"
