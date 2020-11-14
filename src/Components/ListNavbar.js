@@ -1,15 +1,15 @@
 import React from "react";
 import {
+  List,
   ListItem,
   ListItemIcon,
   ListItemText,
 } from "@material-ui/core";
 import { Home, Refresh } from "@material-ui/icons";
 
-const List = () => {
+const ListNavbar = () => {
   return (
     <div>
-
         <List component="nav" arial-label="main-list">
           <ListItem button>
             <ListItemIcon>
@@ -28,4 +28,4 @@ const List = () => {
   );
 };
 
-export default List;
+export default ListNavbar;

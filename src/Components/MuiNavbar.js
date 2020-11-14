@@ -16,17 +16,20 @@ const useStyles = makeStyles((theme) => ({
   offset: theme.mixins.toolbar,
   menuButton: {
     marginRight: theme.spacing(2),
-  },
+    [theme.breakpoints.up('sm')]: {
+      display: 'none',
+    }},
   title: {
     flexGrow: 1,
   },
   navBar: {
+    [theme.breakpoints.up('sm')]: {
     width: `calc (100% - ${drawerWidth}px`,
     marginLeft: drawerWidth
-  }
+    }}
 }));
 
-const MuiNavbar = () => {
+const MuiNavbar = (props) => {
   const classes = useStyles();
   return (
     <>
@@ -38,6 +41,7 @@ const MuiNavbar = () => {
               edge="start"
               color="inherit"
               className={classes.menuButton}
+              onClick={() => {props.opener()}}
             >
               <Menu/>
             </IconButton>

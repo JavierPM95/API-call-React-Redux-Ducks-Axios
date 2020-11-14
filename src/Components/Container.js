@@ -1,9 +1,10 @@
 import React from "react";
 import MuiNavbar from "./MuiNavbar";
 import Pokemon from "./Pokemon";
-import Navbar from "./Navbar";
-import { makeStyles } from "@material-ui/core";
+import { Hidden, makeStyles } from "@material-ui/core";
 import DrawerContainer from "./DrawerContainer";
+import { useState } from "react";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,11 +21,30 @@ const useStyles = makeStyles((theme) => ({
 const Container = () => {
   const classes = useStyles();
 
+    const [open, setOpen] = useState(false)
+
+    const opener = () =>{
+        setOpen(!open)
+    }
+
   return (
     <div className={classes.root}>
-      <MuiNavbar />
-      <Navbar />
-      <DrawerContainer/>
+      <MuiNavbar 
+      opener={opener}
+      />
+      <Hidden smDown>
+        <DrawerContainer
+            variant="permanent"
+            open={true}
+        />
+      </Hidden>
+      <Hidden smUp>
+        <DrawerContainer
+            variant="temporary"
+            open={open}
+            onClose={opener}
+        />
+      </Hidden>
       <div className={classes.content}>
         <div className={classes.toolbar}></div>
         <Pokemon />
