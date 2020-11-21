@@ -11,7 +11,7 @@ const ListNavbar = () => {
   return (
     <div>
         <List component="nav" arial-label="main-list">
-          <ListItem button>
+          <ListItem button href="/">
             <ListItemIcon>
               <Home />
             </ListItemIcon>

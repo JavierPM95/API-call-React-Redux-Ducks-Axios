@@ -32,13 +32,7 @@ const Container = () => {
       <MuiNavbar 
       opener={opener}
       />
-      <Hidden smDown>
-        <DrawerContainer
-            variant="permanent"
-            open={true}
-        />
-      </Hidden>
-      <Hidden smUp>
+      <Hidden xlUp>
         <DrawerContainer
             variant="temporary"
             open={open}

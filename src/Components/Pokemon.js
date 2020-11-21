@@ -18,6 +18,7 @@ const Pokemon = () => {
   useEffect(() => {
     dispatch(getPokedexId());
   }, [offset, dispatch]);
+
   return (
     <div className="container">
       <div className="row my-3">
@@ -32,7 +33,7 @@ const Pokemon = () => {
         <div className="col-md-6 d-flex justify-content-end">
         {offset >= 20 ? (
           <button
-            className="btn btn-primary mx-2"
+            className="btn btn-warning mx-2"
             onClick={() => dispatch(getPokemonPrevious())}
           >
             Previous
@@ -42,7 +43,7 @@ const Pokemon = () => {
         )}
         {offset <= 893 ? (
           <button
-            className="btn btn-primary mx-2"
+            className="btn btn-warning mx-2"
             onClick={() => dispatch(getPokemonNext())}
           >
             Next
@@ -77,7 +78,7 @@ const Pokemon = () => {
       <div className="d-flex justify-content-center">
         {offset >= 20 ? (
           <button
-            className="btn btn-primary mx-2"
+            className="btn btn-warning mx-2"
             onClick={() => dispatch(getPokemonPrevious())}
           >
             Previous
@@ -87,7 +88,7 @@ const Pokemon = () => {
         )}
         {offset <= 893 ? (
           <button
-            className="btn btn-primary mx-2"
+            className="btn btn-warning mx-2"
             onClick={() => dispatch(getPokemonNext())}
           >
             Next

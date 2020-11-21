@@ -27,7 +27,7 @@ const DrawerContainer = (props) => {
         anchor="left"
         variant={props.variant}
         open={props.open}
-        onClose={props.onClose ? props.onClose : null}
+        onClose={props.onClose}
       >
         <div className={classes.toolbar}></div>
         <Divider />

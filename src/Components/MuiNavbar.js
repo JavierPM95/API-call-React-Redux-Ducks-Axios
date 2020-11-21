@@ -16,9 +16,7 @@ const useStyles = makeStyles((theme) => ({
   offset: theme.mixins.toolbar,
   menuButton: {
     marginRight: theme.spacing(2),
-    [theme.breakpoints.up('sm')]: {
-      display: 'none',
-    }},
+    },
   title: {
     flexGrow: 1,
   },
@@ -48,7 +46,7 @@ const MuiNavbar = (props) => {
             <Typography variant="h5" className={classes.title}>
               Pokémon API
             </Typography>
-            <Button variant="text" color="inherit">
+            <Button variant="text" color="inherit" href="/" >
               Reset Page
             </Button>
           </Toolbar>
